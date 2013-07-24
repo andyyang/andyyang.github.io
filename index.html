@@ -9,8 +9,9 @@
   <meta name="author" content="Mingwei">
 
   
-  <meta name="description" content="test
-">
+  <meta name="description" content="原题 有k个有序的数组，请找到一个最小的数字范围，使得这k个有序数组中，每个数组都至少有一个数字在该范围中。 例如： 数组1：4, 10, 15, 24, 26
+数组2：0, 9, 12, 20
+数组3：5, 18, 22, 30 则所得最小范围为[20,24]，其中，20在数组2中， &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -72,7 +73,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/blog/2013/07/22/how-to-install-cloudfoundry/">How-to-install-cloudfoundry</a></h1>
+      <h1 class="entry-title"><a href="/blog/2013/07/22/coding-interview-not-one-less/">面试编程题：一个都不能少</a></h1>
     
     
       <p class="meta">
@@ -95,7 +96,69 @@
   </header>
 
 
-  <div class="entry-content"><p>test</p>
+  <div class="entry-content"><h2><a href="http://t.cn/zQGvysV">原题</a></h2>
+
+<p>有k个有序的数组，请找到一个最小的数字范围，使得这k个有序数组中，每个数组都至少有一个数字在该范围中。 例如：</p>
+
+<ul>
+<li>数组1：4, 10, 15, 24, 26</li>
+<li>数组2：0,  9, 12, 20</li>
+<li>数组3：5, 18, 22, 30</li>
+</ul>
+
+
+<p>则所得最小范围为[20,24]，其中，20在数组2中，22在数组3中，24在数组1中。</p>
+
+<h2>代码</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="k">def</span> <span class="nf">find_min_range</span><span class="p">(</span><span class="n">arrays</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">k</span> <span class="o">=</span> <span class="n">arrays</span><span class="o">.</span><span class="n">length</span>
+</span><span class='line'>    <span class="n">min_range</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
+</span><span class='line'>    <span class="n">range</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="p">{</span><span class="ss">value</span><span class="p">:</span><span class="n">arrays</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="ss">pos</span><span class="p">:</span><span class="n">i</span><span class="p">}</span> <span class="p">}</span>
+</span><span class='line'>  
+</span><span class='line'>    <span class="k">while</span> <span class="kp">true</span>
+</span><span class='line'>      <span class="n">range</span><span class="o">.</span><span class="n">sort_by!</span> <span class="p">{</span><span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">elem</span><span class="o">[</span><span class="ss">:value</span><span class="o">]</span> <span class="p">}</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">range</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span> <span class="o">-</span> <span class="n">range</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">min_range</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">min_range</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">||</span>
+</span><span class='line'>         <span class="n">min_range</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">min_range</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
+</span><span class='line'>        <span class="n">min_range</span> <span class="o">=</span> <span class="o">[</span><span class="n">range</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="p">,</span> <span class="n">range</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="ss">:value</span><span class="o">]]</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="n">min</span> <span class="o">=</span> <span class="n">range</span><span class="o">.</span><span class="n">shift</span>
+</span><span class='line'>      <span class="n">index</span> <span class="o">=</span> <span class="n">min</span><span class="o">[</span><span class="ss">:index</span><span class="o">]</span>
+</span><span class='line'>      <span class="n">pos</span> <span class="o">=</span> <span class="n">min</span><span class="o">[</span><span class="ss">:pos</span><span class="o">]</span>
+</span><span class='line'>      <span class="k">break</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">arrays</span><span class="o">[</span><span class="n">pos</span><span class="o">].</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
+</span><span class='line'>      <span class="n">range</span><span class="o">.</span><span class="n">push</span><span class="p">({</span><span class="ss">value</span><span class="p">:</span><span class="n">arrays</span><span class="o">[</span><span class="n">pos</span><span class="o">][</span><span class="n">index</span><span class="o">]</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span><span class="n">index</span><span class="p">,</span> <span class="ss">pos</span><span class="p">:</span><span class="n">pos</span><span class="p">})</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="nb">puts</span> <span class="n">min_range</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'>  <span class="n">find_min_range</span><span class="p">(</span><span class="o">[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">26</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">30</span><span class="o">]]</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
 </div>
   
   
@@ -116,7 +179,7 @@
   <ul id="recent_posts">
     
       <li class="post">
-        <a href="/blog/2013/07/22/how-to-install-cloudfoundry/">How-to-install-cloudfoundry</a>
+        <a href="/blog/2013/07/22/coding-interview-not-one-less/">面试编程题：一个都不能少</a>
       </li>
     
   </ul>
