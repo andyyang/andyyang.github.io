@@ -1,24 +1,104 @@
-<?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Mingwei]]></title>
-  <link href="http://andyyang.github.io/atom.xml" rel="self"/>
-  <link href="http://andyyang.github.io/"/>
-  <updated>2013-10-14T01:32:21+08:00</updated>
-  <id>http://andyyang.github.io/</id>
-  <author>
-    <name><![CDATA[Mingwei]]></name>
-    
-  </author>
-  <generator uri="http://octopress.org/">Octopress</generator>
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>Ruby元编程惯用法 - Mingwei</title>
+  <meta name="author" content="Mingwei">
 
   
-  <entry>
-    <title type="html"><![CDATA[Ruby元编程惯用法]]></title>
-    <link href="http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby/"/>
-    <updated>2013-10-07T23:00:00+08:00</updated>
-    <id>http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby</id>
-    <content type="html"><![CDATA[<p>以下Ruby元编程的惯用法引用自<a href="http://pragprog.com/book/ppmetr/metaprogramming-ruby">《Metaprogramming Ruby》</a>，该书对Ruby元编程做了很好的总结，非常值得阅读。</p>
+  <meta name="description" content="以下Ruby元编程的惯用法引用自《Metaprogramming Ruby》，该书对Ruby元编程做了很好的总结，非常值得阅读。 基本用法 Argument Array 将参数列表收缩为一个数组。 1
+2
+3
+4
+5
+def my_method(*args) args.map { |arg| &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby">
+  <link href="/favicon.png" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Mingwei" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href="http://fonts.googleapis.com/css?family=PT+Sans:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+
+  
+
+</head>
+
+<body   >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Mingwei</a></h1>
+  
+    <h2>Software Development</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:andyyang.github.io" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/blog/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">Ruby元编程惯用法</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-10-07T23:00:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p>以下Ruby元编程的惯用法引用自<a href="http://pragprog.com/book/ppmetr/metaprogramming-ruby">《Metaprogramming Ruby》</a>，该书对Ruby元编程做了很好的总结，非常值得阅读。</p>
 
 <h2>基本用法</h2>
 
@@ -925,78 +1005,136 @@
 
 
 
-]]></content>
-  </entry>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
   
-  <entry>
-    <title type="html"><![CDATA[面试编程题：一个都不能少]]></title>
-    <link href="http://andyyang.github.io/blog/2013/07/22/coding-interview-not-one-less/"/>
-    <updated>2013-07-22T01:42:00+08:00</updated>
-    <id>http://andyyang.github.io/blog/2013/07/22/coding-interview-not-one-less</id>
-    <content type="html"><![CDATA[<h2><a href="http://t.cn/zQGvysV">原题</a></h2>
 
-<p>有k个有序的数组，请找到一个最小的数字范围，使得这k个有序数组中，每个数组都至少有一个数字在该范围中。 例如：</p>
+<span class="byline author vcard">Posted by <span class="fn">Mingwei</span></span>
 
-<ul>
-<li>数组1：4, 10, 15, 24, 26</li>
-<li>数组2：0,  9, 12, 20</li>
-<li>数组3：5, 18, 22, 30</li>
-</ul>
-
-
-<p>则所得最小范围为[20,24]，其中，20在数组2中，22在数组3中，24在数组1中。</p>
-
-<h2>代码</h2>
-
-<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'> <span class="k">def</span> <span class="nf">find_min_range</span><span class="p">(</span><span class="n">arrays</span><span class="p">)</span>
-</span><span class='line'>    <span class="n">k</span> <span class="o">=</span> <span class="n">arrays</span><span class="o">.</span><span class="n">length</span>
-</span><span class='line'>    <span class="n">min_range</span> <span class="o">=</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="o">]</span>
-</span><span class='line'>    <span class="n">range</span> <span class="o">=</span> <span class="nb">Array</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="n">k</span><span class="p">)</span> <span class="p">{</span><span class="o">|</span><span class="n">i</span><span class="o">|</span> <span class="p">{</span><span class="ss">value</span><span class="p">:</span><span class="n">arrays</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="mi">0</span><span class="o">]</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span> <span class="ss">pos</span><span class="p">:</span><span class="n">i</span><span class="p">}</span> <span class="p">}</span>
-</span><span class='line'>  
-</span><span class='line'>    <span class="k">while</span> <span class="kp">true</span>
-</span><span class='line'>      <span class="n">range</span><span class="o">.</span><span class="n">sort_by!</span> <span class="p">{</span><span class="o">|</span><span class="n">elem</span><span class="o">|</span> <span class="n">elem</span><span class="o">[</span><span class="ss">:value</span><span class="o">]</span> <span class="p">}</span>
-</span><span class='line'>      <span class="k">if</span> <span class="n">range</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span> <span class="o">-</span> <span class="n">range</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">min_range</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">min_range</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">||</span>
-</span><span class='line'>         <span class="n">min_range</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">min_range</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">&lt;</span> <span class="mi">0</span>
-</span><span class='line'>        <span class="n">min_range</span> <span class="o">=</span> <span class="o">[</span><span class="n">range</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="ss">:value</span><span class="o">]</span><span class="p">,</span> <span class="n">range</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">][</span><span class="ss">:value</span><span class="o">]]</span>
-</span><span class='line'>      <span class="k">end</span>
-</span><span class='line'>      <span class="n">min</span> <span class="o">=</span> <span class="n">range</span><span class="o">.</span><span class="n">shift</span>
-</span><span class='line'>      <span class="n">index</span> <span class="o">=</span> <span class="n">min</span><span class="o">[</span><span class="ss">:index</span><span class="o">]</span>
-</span><span class='line'>      <span class="n">pos</span> <span class="o">=</span> <span class="n">min</span><span class="o">[</span><span class="ss">:pos</span><span class="o">]</span>
-</span><span class='line'>      <span class="k">break</span> <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;=</span> <span class="n">arrays</span><span class="o">[</span><span class="n">pos</span><span class="o">].</span><span class="n">length</span> <span class="o">-</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
-</span><span class='line'>      <span class="n">range</span><span class="o">.</span><span class="n">push</span><span class="p">({</span><span class="ss">value</span><span class="p">:</span><span class="n">arrays</span><span class="o">[</span><span class="n">pos</span><span class="o">][</span><span class="n">index</span><span class="o">]</span><span class="p">,</span> <span class="ss">index</span><span class="p">:</span><span class="n">index</span><span class="p">,</span> <span class="ss">pos</span><span class="p">:</span><span class="n">pos</span><span class="p">})</span>
-</span><span class='line'>    <span class="k">end</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="n">min_range</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'>
-</span><span class='line'>  <span class="n">find_min_range</span><span class="p">(</span><span class="o">[[</span><span class="mi">4</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">15</span><span class="p">,</span><span class="mi">24</span><span class="p">,</span><span class="mi">26</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">0</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">12</span><span class="p">,</span><span class="mi">20</span><span class="o">]</span><span class="p">,</span> <span class="o">[</span><span class="mi">5</span><span class="p">,</span><span class="mi">18</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">30</span><span class="o">]]</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
+      
 
 
 
-]]></content>
-  </entry>
+
+
+
+
+
   
-</feed>
+
+
+<time datetime="2013-10-07T23:00:00+08:00" pubdate data-updated="true">Oct 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/blog/categories/ruby/'>Ruby</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby/" data-via="" data-counturl="http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/blog/2013/07/22/coding-interview-not-one-less/" title="Previous Post: 面试编程题：一个都不能少">&laquo; 面试编程题：一个都不能少</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/blog/2013/10/07/spells-of-metaprogramming-ruby/">Ruby元编程惯用法</a>
+      </li>
+    
+      <li class="post">
+        <a href="/blog/2013/07/22/coding-interview-not-one-less/">面试编程题：一个都不能少</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Mingwei -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'mingwei';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby/';
+        var disqus_url = 'http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = '//platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>
