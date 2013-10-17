@@ -4,7 +4,7 @@
   <title><![CDATA[Mingwei]]></title>
   <link href="http://andyyang.github.io/atom.xml" rel="self"/>
   <link href="http://andyyang.github.io/"/>
-  <updated>2013-10-14T01:32:21+08:00</updated>
+  <updated>2013-10-18T01:46:07+08:00</updated>
   <id>http://andyyang.github.io/</id>
   <author>
     <name><![CDATA[Mingwei]]></name>
@@ -12,6 +12,119 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[每周编程题：线程协同打印数字序列]]></title>
+    <link href="http://andyyang.github.io/blog/2013/10/17/coding-interview-printing-number-sequence/"/>
+    <updated>2013-10-17T00:55:00+08:00</updated>
+    <id>http://andyyang.github.io/blog/2013/10/17/coding-interview-printing-number-sequence</id>
+    <content type="html"><![CDATA[<h2>题目</h2>
+
+<p>Write a program to print a number sequence from 1 to m with n threads. Each thread print one number at a time. The threads run in a round robin fashion.</p>
+
+<p>Input: n = 10, m = 100</p>
+
+<p>sample output:<br/>
+Thread-1: 1<br/>
+Thread-2: 2<br/>
+&hellip;.<br/>
+&hellip;.<br/>
+Thread-10: 10<br/>
+Thread-1: 11<br/>
+Thread-2: 12<br/>
+&hellip;.<br/>
+&hellip;.<br/>
+Thread-10: 20<br/>
+Thread-1: 21<br/>
+Thread-2: 22<br/>
+&hellip;<br/>
+&hellip;<br/>
+Thread-10: 100</p>
+
+<h2>分析</h2>
+
+<p>这里需要多个线程轮流打印一个数字序列，因此这些线程需要协同工作，即线程1取数字k打印后暂停打印，线程2取下一个数字k+1继续打印，以此类推，线程10取数字k+9打印后，线程1又开始取数字k+10打印，直到序列中的所有数字都打印完。</p>
+
+<p>本来准备在每个工作线程开始后在工作线程内部调用Thread.stop来暂停工作线程，然后在主线程中通过Thread#run唤醒第一个工作线程，并在之后通过Thread#join依次等待所有工作线程结束。但是由于Ruby线程模型的限制，这样的调用会产生错误信息&#8221;in `join&#8217;: No live threads left. Deadlock?&ldquo;，即Thread＃join导致主线程被挂起，同时调度运行其他的工作线程，如果此时所有的工作线程由于Thread.stop的调用而处于“睡眠”状态时，就会出现没有线程可以调度运行即死锁的问题。</p>
+
+<p>解决办法是通过一个所有线程共享的变量来指示当前应该是哪个工作线程来运行，如果当前线程不是应该运行的工作线程，则该线程调用Thread.pass把执行权让给其他线程；如果当前线程是应该运行的工作线程，则在打印数字后将指示变量设置为下一个线程的序号。由于任何时候只有一个线程会设置该指示变量，因此不存在变量同步访问的问题。</p>
+
+<h2>代码</h2>
+
+<figure class='code'> <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="k">if</span> <span class="no">ARGV</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">2</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;usage: threads n m&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">n</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">].</span><span class="n">to_i</span>
+</span><span class='line'><span class="n">m</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">1</span><span class="o">].</span><span class="n">to_i</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">if</span> <span class="n">n</span> <span class="o">&lt;=</span> <span class="mi">0</span> <span class="o">||</span> <span class="n">m</span> <span class="o">&lt;=</span> <span class="mi">0</span>
+</span><span class='line'>  <span class="nb">puts</span> <span class="s2">&quot;n and m must be lager than 0&quot;</span>
+</span><span class='line'>  <span class="nb">exit</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">threads</span> <span class="o">=</span> <span class="o">[]</span>
+</span><span class='line'><span class="n">current_thread</span> <span class="o">=</span> <span class="mi">1</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">(</span><span class="mi">1</span><span class="o">.</span><span class="n">.n</span><span class="p">)</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">i</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">threads</span> <span class="o">&lt;&lt;</span> <span class="no">Thread</span><span class="o">.</span><span class="n">new</span> <span class="k">do</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">i</span>
+</span><span class='line'>    <span class="k">while</span> <span class="n">count</span> <span class="o">&lt;=</span> <span class="n">m</span>
+</span><span class='line'>      <span class="k">if</span> <span class="n">i</span> <span class="o">!=</span> <span class="n">current_thread</span>
+</span><span class='line'>        <span class="no">Thread</span><span class="o">.</span><span class="n">pass</span>
+</span><span class='line'>        <span class="k">redo</span>
+</span><span class='line'>      <span class="k">end</span>
+</span><span class='line'>      <span class="nb">puts</span> <span class="s2">&quot;Thread</span><span class="si">#{</span><span class="n">i</span><span class="si">}</span><span class="s2">: </span><span class="si">#{</span><span class="n">count</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>      <span class="n">count</span> <span class="o">+=</span> <span class="n">n</span>
+</span><span class='line'>      <span class="n">current_thread</span> <span class="o">=</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="n">n</span> <span class="p">?</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="p">:</span> <span class="mi">1</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">threads</span><span class="o">.</span><span class="n">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">t</span><span class="o">.</span><span class="n">join</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Ruby元编程惯用法]]></title>
@@ -929,7 +1042,7 @@
   </entry>
   
   <entry>
-    <title type="html"><![CDATA[面试编程题：一个都不能少]]></title>
+    <title type="html"><![CDATA[每周编程题：一个都不能少]]></title>
     <link href="http://andyyang.github.io/blog/2013/07/22/coding-interview-not-one-less/"/>
     <updated>2013-07-22T01:42:00+08:00</updated>
     <id>http://andyyang.github.io/blog/2013/07/22/coding-interview-not-one-less</id>

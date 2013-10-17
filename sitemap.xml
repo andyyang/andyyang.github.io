@@ -2,19 +2,25 @@
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
         <loc>http://andyyang.github.io/blog/2013/07/22/coding-interview-not-one-less/</loc>
-        <lastmod>2013-07-25T00:37:43+08:00</lastmod>
+        <lastmod>2013-10-17T00:53:15+08:00</lastmod>
     </url>
     <url>
         <loc>http://andyyang.github.io/blog/2013/10/07/spells-of-metaprogramming-ruby/</loc>
         <lastmod>2013-10-14T01:30:21+08:00</lastmod>
     </url>
     <url>
+        <loc>
+            http://andyyang.github.io/blog/2013/10/17/coding-interview-printing-number-sequence/
+        </loc>
+        <lastmod>2013-10-18T01:46:07+08:00</lastmod>
+    </url>
+    <url>
         <loc>http://andyyang.github.io/blog/archives/</loc>
-        <lastmod>2013-10-14T01:30:21+08:00</lastmod>
+        <lastmod>2013-10-18T01:46:07+08:00</lastmod>
     </url>
     <url>
         <loc>http://andyyang.github.io/</loc>
-        <lastmod>2013-10-14T01:30:21+08:00</lastmod>
+        <lastmod>2013-10-18T01:46:07+08:00</lastmod>
     </url>
     <url>
         <loc>http://andyyang.github.io/robots.txt</loc>
