@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "面试编程题：一个都不能少"
+title: "每周编程题：一个都不能少"
 date: 2013-07-22 01:42
 comments: true
 categories: 
